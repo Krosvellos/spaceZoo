@@ -43,6 +43,6 @@ public class Pavilion {
 
     // Pavilion holds a list of animals
 
-    List<Pavilion> animals = new ArrayList<>();
+    List<Animal> animalsList = new ArrayList<>();
 
 }
