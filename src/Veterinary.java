@@ -1,7 +1,9 @@
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 public class Veterinary {
+    private UUID uuid = UUID.randomUUID();
     private String nameOfClinic;
 
     private String vetDoctor;
@@ -12,6 +14,11 @@ public class Veterinary {
 
 
     //Vytvoření Getters & Setters
+
+
+    public UUID getUuid() {
+        return uuid;
+    }
 
     public String getNameOfClinic() {
         return nameOfClinic;
@@ -45,12 +52,16 @@ public class Veterinary {
         this.timeStamp = timeStamp;
     }
 
-    // Konstruktor
+    // Constructor
 
     public Veterinary(String nameOfClinic, String vetDoctor){
+        this.uuid = UUID.randomUUID();
         this.nameOfClinic = nameOfClinic;
         this.vetDoctor = vetDoctor;
+
     }
+
+
 
 
 }
