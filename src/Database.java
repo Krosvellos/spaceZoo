@@ -8,5 +8,7 @@ public class Database {
 
     public static HashMap<String, List<Pavilion>> pavilions  = new HashMap<>();
 
+    public static HashMap<String, List<Ticket>> tickets  = new HashMap<>();
+
 
 }

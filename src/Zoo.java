@@ -17,6 +17,10 @@ public class Zoo {
         this.name = name;
     }
 
+    public UUID getUuid() {
+        return uuid;
+    }
+
     // Creating a new zoo that includes a list of pavilions.
 
     // Constructor
@@ -29,7 +33,7 @@ public class Zoo {
     public void createZoo(){
 
         // Creating a list of pavilions
-        List<Pavilion> pavilions = new ArrayList<>();
+        List<Pavilion> pavilionList = new ArrayList<>();
 
         // Creating new pavilions
 
@@ -38,10 +42,21 @@ public class Zoo {
 
         //Adding pavilions to the list
 
-        pavilions.add(pavilion1);
-        pavilions.add(pavilion2);
-        System.out.println(pavilions);
-        Database.pavilions.put("Pavilions", pavilions);
+        pavilionList.add(pavilion1);
+        pavilionList.add(pavilion2);
+//        System.out.println(pavilions);
+
+        // Adding pavilions do database.
+        Database.pavilions.put("Pavilions", pavilionList);
+
+
+       TicketCreator ticket_create_service = new TicketCreator();
+       ticket_create_service.createTicket();
+
+
+
+
+
 
         // Creating instances of animals - I know the comments are getting tedious n stuff
 
@@ -53,8 +68,10 @@ public class Zoo {
         pavilion1.animalsList.add(spaceCow);
         pavilion2.animalsList.add(spaceLion);
 
-        System.out.println(pavilion1.animalsList);
-        System.out.println(pavilion2.animalsList);
+//        System.out.println(pavilion1.animalsList);
+//        System.out.println(pavilion2.animalsList);
+
+        // Adding animals to the database.
 
         Database.animals.put("Pav1Animals", pavilion1.animalsList);
         Database.animals.put("Pav2Animals", pavilion2.animalsList);
@@ -66,11 +83,11 @@ public class Zoo {
 
     // -- Veterinary init
         Veterinary vet1 = new Veterinary("Space clinic","Doctor Lu");
-        System.out.println("----------------");
-        System.out.println(vet1.getUuid());
-        System.out.println(vet1.getVetDoctor());
-        System.out.println(vet1.getNameOfClinic());
-        System.out.println("----------------");
+//        System.out.println("----------------");
+//        System.out.println(vet1.getUuid());
+//        System.out.println(vet1.getVetDoctor());
+//        System.out.println(vet1.getNameOfClinic());
+//        System.out.println("----------------");
         spaceWhale.veterinaryList.add(vet1);
         Database.veterinary.put("whaleVet", spaceWhale.veterinaryList);
 
