@@ -53,10 +53,11 @@ public class Zoo {
        TicketCreator ticket_create_service = new TicketCreator();
        ticket_create_service.createTicket();
 
+//        System.out.println(Database.tickets);
 
 
-
-
+        TicketReservation reserveTicket = new TicketReservation();
+        reserveTicket.reserveTicket();
 
         // Creating instances of animals - I know the comments are getting tedious n stuff
 

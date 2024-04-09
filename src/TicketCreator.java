@@ -9,13 +9,14 @@ public class TicketCreator {
 
         List<Ticket> ticketList = new ArrayList<>();
 
-        Ticket ticket1 = new Ticket(true);
-        Ticket ticket2 = new Ticket(true);
+        Ticket ticket1 = new Ticket(false);
+        Ticket ticket2 = new Ticket(false);
 
         ticketList.add(ticket1);
         ticketList.add(ticket2);
 
         Database.tickets.put("Tickets", ticketList);
+
 
     }
 
