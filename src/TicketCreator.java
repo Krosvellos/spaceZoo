@@ -7,15 +7,11 @@ public class TicketCreator {
 
         // Adding tickets to the zoo. First we create a list of tickets.
 
-        List<Ticket> ticketList = new ArrayList<>();
 
-        Ticket ticket1 = new Ticket(false);
-        Ticket ticket2 = new Ticket(false);
 
-        ticketList.add(ticket1);
-        ticketList.add(ticket2);
 
-        Database.tickets.put("Tickets", ticketList);
+
+
 
 
     }

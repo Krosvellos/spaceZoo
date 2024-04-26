@@ -1,14 +1,11 @@
 import java.util.HashMap;
-import java.util.List;
+import java.util.UUID;
 
 public class Database {
+    public static HashMap<UUID, Animal> animalHashMap = new HashMap<>();
+    public static HashMap<UUID, Pavilion> pavilionHashMap = new HashMap<>();
 
-   public static HashMap<String, List<Veterinary>> veterinary  = new HashMap<>();
-    public static HashMap<String, List<Animal>> animals  = new HashMap<>();
+    public static HashMap<UUID, Veterinary> veterinaryHashMap = new HashMap<>();
 
-    public static HashMap<String, List<Pavilion>> pavilions  = new HashMap<>();
-
-    public static HashMap<String, List<Ticket>> tickets  = new HashMap<>();
-
-
+    public static HashMap<UUID, Zoo> zooHashMap = new HashMap<>();
 }

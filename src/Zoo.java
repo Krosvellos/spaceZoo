@@ -1,104 +1,120 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class Zoo {
+    public String name;
+    private ArrayList<UUID> pavilionUUIDs = new ArrayList<>();
 
-    private UUID uuid;
-    private String name;
 
-    // Getter & Setter for name of the Zoo
+
+    public void addPavilion(Pavilion pavilion) {
+        UUID uuid = UUID.randomUUID();
+        pavilionUUIDs.add(uuid);
+        Database.pavilionHashMap.put(uuid, pavilion);
+    }
+
+
+
+
+//    public Veterinary getVeterinary(String nameOfVeterinary) {
+////        for (UUID uuid : veterinaryUUIDs) {
+////            Database.veterinaryHashMap.forEach((key,value) -> {
+////                if (value.getNameOfVeterinary().equals(nameOfVeterinary) && key == uuid) {
+////                    return value;
+////                }
+////            });
+////        }
+//        for (Map.Entry<UUID, Veterinary> entry : Database.veterinaryHashMap.entrySet()) {
+//            Veterinary veterinary = entry.getValue();
+//            if (veterinary != null && veterinary.getNameOfVeterinary().equals(nameOfVeterinary)) {
+//                //System.out.println(veterinary);
+//                return veterinary;
+//            }
+//        }
+//        return null;
+//    }
+
+    public void listPavilions() {
+        System.out.println();
+        System.out.println();
+        System.out.println("Pavilons in - " + name + " - Zoo");
+        System.out.println("------------------------");
+
+        for (UUID element : pavilionUUIDs) {
+            Database.pavilionHashMap.forEach((key, value) -> {
+                if (element == key) {
+                    System.out.println(value.getNameOfPavilion());
+                }
+            });
+        }
+        System.out.println("------------------------");
+        System.out.println();
+    }
+
+    public void AddAnimalToPavilion(String nameOfPavilon, Animal animal) {
+        Database.pavilionHashMap.forEach((key, value) -> {
+            if (value.getNameOfPavilion().equals(nameOfPavilon)) {
+                value.addAnimalToPavilion(animal);
+            }
+        });
+    }
+
+
+
+
+    public Animal getAnimal(String nameOfPavilon, String nameOfAnimal) {
+        for (Map.Entry<UUID, Pavilion> entry : Database.pavilionHashMap.entrySet()) {
+            Pavilion pavilion = entry.getValue();
+            if (nameOfPavilon.equals(pavilion.getNameOfPavilion())) {
+                Animal animal = pavilion.getAnimal(nameOfAnimal);
+                if (animal != null) {
+                    return animal;
+                }
+            }
+        }
+        return null;
+    }
+
+//    public UUID getAnimal(String nameOfPavilon, String nameOfAnimal) {
+//
+//        Database.pavilonHashMap.forEach((key, value) -> {
+//            if (nameOfPavilon.equals(value.getNameOfPavilon())) {
+//                value.getAnimal(nameOfAnimal);
+//
+//            }
+//        });
+//        return null;
+//    }
+
+
+//    public void veterinaryCare(String nameOfVeterinaryCare, UUID animalUUID) {
+//        Database.veterinaryHashMap.forEach((key, value) -> {
+//            if (value.getNameOfVeterinary().equals(nameOfVeterinaryCare)) {
+//                value.addAnimalToVeterinaryAndWriteNote(animalUUID);
+//            }
+//        });
+//    }
+
+    public void listAnimalsFromPavilion(String name) {
+        System.out.println();
+        System.out.println();
+        System.out.println("Animals in - " + name + " - Pavilon");
+        System.out.println("------------------------");
+        Database.pavilionHashMap.forEach((key, value) -> {
+            if (name.equals(value.getNameOfPavilion())) {
+                value.listAnimalsInPavilion();
+            }
+        });
+        System.out.println("------------------------");
+        System.out.println();
+    }
+
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Zoo(String name) {
         this.name = name;
     }
-
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    // Creating a new zoo that includes a list of pavilions.
-
-    // Constructor
-    public Zoo(String name){
-        this.uuid=UUID.randomUUID();
-        this.name= name;
-    }
-
-    // a method to create a zoo
-    public void createZoo(){
-
-        // Creating a list of pavilions
-        List<Pavilion> pavilionList = new ArrayList<>();
-
-        // Creating new pavilions
-
-        Pavilion pavilion1 = new Pavilion("Alpha",20);
-        Pavilion pavilion2 = new Pavilion("Beta",15);
-
-        //Adding pavilions to the list
-
-        pavilionList.add(pavilion1);
-        pavilionList.add(pavilion2);
-//        System.out.println(pavilions);
-
-        // Adding pavilions do database.
-        Database.pavilions.put("Pavilions", pavilionList);
-
-
-       TicketCreator ticket_create_service = new TicketCreator();
-       ticket_create_service.createTicket();
-
-//        System.out.println(Database.tickets);
-
-
-        TicketReservation reserveTicket = new TicketReservation();
-        reserveTicket.reserveTicket();
-
-        // Creating instances of animals - I know the comments are getting tedious n stuff
-
-        Animal spaceWhale = new Animal("Irma", 32);
-        Animal spaceCow = new Animal("Ivette", 8);
-        Animal spaceLion = new Animal("Bob", 5);
-
-        pavilion1.animalsList.add(spaceWhale);
-        pavilion1.animalsList.add(spaceCow);
-        pavilion2.animalsList.add(spaceLion);
-
-//        System.out.println(pavilion1.animalsList);
-//        System.out.println(pavilion2.animalsList);
-
-        // Adding animals to the database.
-
-        Database.animals.put("Pav1Animals", pavilion1.animalsList);
-        Database.animals.put("Pav2Animals", pavilion2.animalsList);
-
-
-
-
-
-
-    // -- Veterinary init
-        Veterinary vet1 = new Veterinary("Space clinic","Doctor Lu");
-//        System.out.println("----------------");
-//        System.out.println(vet1.getUuid());
-//        System.out.println(vet1.getVetDoctor());
-//        System.out.println(vet1.getNameOfClinic());
-//        System.out.println("----------------");
-        spaceWhale.veterinaryList.add(vet1);
-        Database.veterinary.put("whaleVet", spaceWhale.veterinaryList);
-
-
-
-
-
-
-
-    }
-
-
 }

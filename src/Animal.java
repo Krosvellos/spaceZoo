@@ -1,3 +1,4 @@
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -10,10 +11,11 @@ public class Animal {
 
     private int age;
 
+    private LocalTime lastVeterinaryCheck;
     // Getters and Setters
 
 
-    public UUID getUuid() {
+    public UUID getUUID() {
         return uuid;
     }
 
@@ -29,6 +31,10 @@ public class Animal {
         return age;
     }
 
+    public void setLastTimeVeterinaryCheck(LocalTime time) {
+        this.lastVeterinaryCheck = time;
+    }
+
     public void setAge(int age) {
         this.age = age;
     }
@@ -42,6 +48,6 @@ public class Animal {
 
     }
 
-    List<Veterinary> veterinaryList = new ArrayList<>();
+
 
 }
